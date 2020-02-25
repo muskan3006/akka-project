@@ -10,3 +10,4 @@ libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.6.3" % Test
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3"
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.6.3"
