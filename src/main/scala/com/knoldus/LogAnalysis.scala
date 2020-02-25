@@ -2,23 +2,9 @@ package com.knoldus
 
 import java.io.File
 
-import com.typesafe.scalalogging.LazyLogging
-
 import scala.io.Source
 
-object ReadFiles extends App with LazyLogging {
-
-  val directoryPath: String = "/home/knoldus/workspace/log-files"
-  private val getFiles: List[File] = {
-    val directory = new File(directoryPath)
-    if (directory.exists && directory.isDirectory) {
-      val list = directory.listFiles.toList
-      println(list)
-      list
-    } else {
-      List[File]()
-    }
-  }
+class LogAnalysis extends ReadFile {
 
   def average: Map[String, Int] ={
     val noOfFiles = getFiles.length
@@ -72,4 +58,10 @@ object ReadFiles extends App with LazyLogging {
 
   }
 
+}
+
+object A extends App{
+  val a = new LogAnalysis
+  println(a.totalCount)
+  println(a.average)
 }
