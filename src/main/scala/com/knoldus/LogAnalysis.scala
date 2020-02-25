@@ -23,7 +23,6 @@ class LogAnalysis extends ReadFile {
           val tempError = a.getOrElse("error", countError)
           val tempInfo = a.getOrElse("info", countInfo)
           val tempWarn = a.getOrElse("warn", countWarn)
-        //  val temp = Map("error" -> countError+tempError,"info" -> countInfo+tempInfo,"warn" ->countWarn + tempWarn)
           operatingMethod(listOfFile, countError + tempError, countInfo + tempInfo, countWarn + tempWarn)
         case first :: Nil => val a = count(first)
           val tempError = a.getOrElse("error", countError)
@@ -60,8 +59,4 @@ class LogAnalysis extends ReadFile {
 
 }
 
-object A extends App{
-  val a = new LogAnalysis
-  println(a.totalCount)
-  println(a.average)
-}
+

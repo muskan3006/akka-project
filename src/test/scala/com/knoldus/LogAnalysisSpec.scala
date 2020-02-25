@@ -14,6 +14,16 @@ class LogAnalysisSpec extends FunSuite with BeforeAndAfterAll {
         logAnalysis = null
       }
     }
+test("testing totalCount"){
+  val actual = logAnalysis.totalCount
+  val expected = (0,8448,47982)
+  assert(actual==expected)
+}
 
-
+  test("testing average"){
+    val actual = logAnalysis.average
+    val expected = Map("averageErrors" -> 0, "averageInfo" -> 256, "averageWarn" -> 1454)
+    assert(actual==expected)
   }
+
+}
