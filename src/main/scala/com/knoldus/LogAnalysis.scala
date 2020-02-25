@@ -59,4 +59,8 @@ class LogAnalysis extends ReadFile {
 
 }
 
+//object A extends App{
+//  val a = new LogAnalysis
+//  println(a.totalCount)
+//}
 

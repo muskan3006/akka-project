@@ -5,6 +5,7 @@ import java.io.File
 
 import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
 import akka.pattern.ask
+import akka.routing.RoundRobinPool
 import akka.util.Timeout
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -32,16 +33,13 @@ class LogAnalysisAkka extends LogAnalysis with Actor with ActorLogging {
 }
 
 object LogAnalyse extends App with ReadFile {
-  implicit val timeout: Timeout = Timeout(10.second)
+  implicit val timeout: Timeout = Timeout(20.second)
   val system = ActorSystem("LogAnalyse")
-  val worker = system.actorOf(Props[LogAnalysisAkka], name = "worker")
-  // val listOfWorkers = getFiles.map(_ => system.actorOf(Props[LogAnalysisAkka]))
-  //Thread.sleep(10.seconds)
-  //val total = listOfTotal.
+  val worker = system.actorOf((RoundRobinPool(8)).props(Props[LogAnalysisAkka]).withDispatcher("fixed-thread-pool"), name = "worker")
   val a = getFiles.map(file => {(worker ? file).mapTo[(Int,Int,Int)]})
   val b = Future.sequence(a).map(_.last)
 
-  val result = Await.result(b, 10 second)
+  val result = Await.result(b, 20 second)
   println(result)
 
 }
